@@ -19,5 +19,4 @@ class Player():
             self.stash.append(card)
             pot.pop()
 
-        
-        
+
