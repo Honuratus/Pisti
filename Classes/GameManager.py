@@ -15,13 +15,14 @@ class GameManager():
         for i in range(4):
             to.append(self.deck.top_card())
     
+
     def check_swipe(self,card: Card, last_player):
-        if not self.pot: # if pot is empty do nothing
+        if not self.pot: #If pot is empty does nothing
             return False
-        if card.v == self.pot[len(self.pot) - 1].v or card.v == 11: # if last played card's value equal to top card in the pot enter the if
+        if card.v == self.pot[len(self.pot) - 1].v or card.v == 11: #If last played card's value equals to top card in the pot enters the if
             last_player.pot_to_stash(self.pot)  
-            self.last_swiper = last_player # initialize last_swiper
-            last_player.stash.append(card) # add last played card to stash
+            self.last_swiper = last_player #Initializes last_swiper
+            last_player.stash.append(card) #Adds last played card to stash
             if len(self.pot) == 1:
                 if card.v == 11:
                     last_player.total_points+=50
@@ -33,11 +34,11 @@ class GameManager():
         return False
 
 
-    # append the card to pot
+    #Append the card to pot
     def add_to_pot(self, card):
         self.pot.append(card)
 
-    #Points System
+    #Point calculation system
     def calc_points(self, player, other_player):
         for card in player.stash:
             print(player.total_points)

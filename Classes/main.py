@@ -2,45 +2,45 @@ from GameManager import GameManager
 
 
 def main():
-    game_manager = GameManager() # create instance of GameManager class
-    game_manager.deal_four_cards(game_manager.pot) # deal four cards to pot
+    game_manager = GameManager() #Creates instance of GameManager class
+    game_manager.deal_four_cards(game_manager.pot) #Deal four cards to pot
 
-    while len(game_manager.deck)!=0: # main game loop (exits if deck is empty)
-        game_manager.deal_four_cards(game_manager.player_1.hand) # give player 4 card
-        game_manager.deal_four_cards(game_manager.player_2.hand) # give 4 card to other player
-        while len(game_manager.player_2.hand)!=0: # manage the current hand (if player 2 plays the it's last card exit the loop)
+    while len(game_manager.deck)!=0: #Main game loop (exits if deck is empty)
+        game_manager.deal_four_cards(game_manager.player_1.hand) #Gives player 4 card
+        game_manager.deal_four_cards(game_manager.player_2.hand) #Gives 4 card to other player
+        while len(game_manager.player_2.hand)!=0: #Manage the current hand (if player 2 plays the it's last card exit the loop)
             
-            # print pot and hand
+            #Prints pot and hand
             print("Pot: ")
             print(game_manager.pot)
             print()
             print(game_manager.player_1.hand)
 
-            # get index of played card
+            #Gets index of played card
             idx = int(input("(Player1)Select from upper list:"))
 
-            # pop up from player hand
+            #Pop up from player hand
             played_card = game_manager.player_1.play_card(idx)
             
-            # check for swipe if check_swipe returns false then add card to pot
+            #Checks for swipe if check_swipe returns false then add card to pot
             if game_manager.check_swipe(played_card, game_manager.player_1):
                 pass
             else:
                 game_manager.add_to_pot(played_card) 
 
-            # print pot and hand
+            #Prints pot and hand
             print()
             print("Pot: ")
             print(game_manager.pot)
             print()
             print(game_manager.player_2.hand)
 
-            # get index of played card
+            #Gets index of played card
             idx = int(input("(Player2)Select from upper list:"))
 
             played_card = game_manager.player_2.play_card(idx)
 
-            # check for swipe if check_swipe returns false then add card to pot
+            #Chhecks for swipe if check_swipe returns false then add card to pot
             if game_manager.check_swipe(played_card, game_manager.player_2):
                 pass
             else:
