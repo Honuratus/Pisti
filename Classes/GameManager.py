@@ -30,6 +30,24 @@ class GameManager():
     def add_to_pot(self, card):
         self.pot.append(card)
 
+    #Points System
+    def calc_points(self, player, other_player):
+        for card in player.stash:
+            if card.v==11:
+                player.total_points+=1
+            if card.v==14:
+                player.total_points+=1
+            if card.v==2 and card.s=="Clubs":
+                player.total_points+=2
+            if card.v==10 and card.s=="Diamonds":
+                player.total_points+=3
+            if  len(player.stash)>len(other_player.stash):
+                player.total_points+=3
+            
+
+
+
+
         
         
 
