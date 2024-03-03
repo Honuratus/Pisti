@@ -1,4 +1,4 @@
-from Deck import Deck
+from Deck import Deck, Card
 from Player import Player
 
 class GameManager():
@@ -17,21 +17,21 @@ class GameManager():
         for i in range(4):
             to.append(self.deck.top_card())
     
+    def check_swipe(self,card: Card, last_player):
+        if not self.pot: # if pot is empty do nothing
+            return False
+        if card.v == self.pot[len(self.pot) - 1].v: # if last played card's value equal to top card in the pot enter the if
+            last_player.pot_to_stash(self.pot)  
+            self.last_swiper = last_player # initialize last_swiper
+            last_player.stash.append(card) # add last played card to stash
+            return True
+        return False
 
-    def check_swipe(self,card, last_player):
-        print(self.pot[len(self.pot) - 1].v)
-        if int(card.v) == int(self.pot[0].v):
-            last_player.pot_to_stash(self.pot)
-            self.last_swiper = last_player
-        if card.v=="Jack":
-            last_player.pot_to_stash(self.pot)
-            self.last_swiper = last_player
 
-
+    # append the card to pot
     def add_to_pot(self, card):
         self.pot.append(card)
 
         
         
 
-        # deck ten 4 defa top_card fonksiyonunu çağırman ve her seferinde onu hangi parametre geldiyse ona append etmen
