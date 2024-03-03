@@ -4,6 +4,8 @@ class Player():
         self.hand = list()
         self.username = username 
         self.total_points = 0 # for future updates
+        self.jocker_pisti = 0
+        self.normal_pisti = 0
 
     # it's get the top card from player hand and remove it from hand and then return it
     def play_card(self, idx): 

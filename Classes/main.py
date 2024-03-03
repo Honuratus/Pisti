@@ -47,14 +47,22 @@ def main():
                 game_manager.add_to_pot(played_card)
 
 
-    if len(game_manager.pot)!=0:
-        print("pipiiii\n\n")
-        game_manager.last_swiper.pot_to_stash(game_manager.pot)
+    game_manager.calc_points(game_manager.player_1, game_manager.player_2)
+    game_manager.calc_points(game_manager.player_2, game_manager.player_1)
 
-    if len(game_manager.player_1.stash)>len(game_manager.player_2.stash):
+
+    print(f"\n\tP1:{game_manager.player_1.total_points}\t\n")
+    print(f"p1 pisti {game_manager.player_1.jocker_pisti}\n p1 j pist: {game_manager.player_1.normal_pisti}")
+    print(f"P1 Stash{game_manager.player_1.stash}")
+    print(f"\n\tP2:{game_manager.player_2.total_points}\t\n")
+    print(f"p2 pisti {game_manager.player_2.jocker_pisti}\n p2 j pist: {game_manager.player_2.normal_pisti}")
+    print(f"P2 Stash{game_manager.player_2.stash}")
+
+
+    if game_manager.player_1.total_points>game_manager.player_2.total_points:
         print("Player One Won")
 
-    elif len(game_manager.player_1.stash)<len(game_manager.player_2.stash):
+    elif game_manager.player_1.total_points<game_manager.player_2.total_points:
         print("Player Two Won")
 
     else:

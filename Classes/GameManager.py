@@ -18,10 +18,17 @@ class GameManager():
     def check_swipe(self,card: Card, last_player):
         if not self.pot: # if pot is empty do nothing
             return False
-        if card.v == self.pot[len(self.pot) - 1].v: # if last played card's value equal to top card in the pot enter the if
+        if card.v == self.pot[len(self.pot) - 1].v or card.v == 11: # if last played card's value equal to top card in the pot enter the if
             last_player.pot_to_stash(self.pot)  
             self.last_swiper = last_player # initialize last_swiper
             last_player.stash.append(card) # add last played card to stash
+            if len(self.pot) == 1:
+                if card.v == 11:
+                    last_player.total_points+=50
+                    last_player.jocker_pisti += 1
+                else:
+                    last_player.total_points+=10
+                    last_player.normal_pisti += 1
             return True
         return False
 
@@ -33,6 +40,7 @@ class GameManager():
     #Points System
     def calc_points(self, player, other_player):
         for card in player.stash:
+            print(player.total_points)
             if card.v==11:
                 player.total_points+=1
             if card.v==14:
@@ -41,8 +49,8 @@ class GameManager():
                 player.total_points+=2
             if card.v==10 and card.s=="Diamonds":
                 player.total_points+=3
-            if  len(player.stash)>len(other_player.stash):
-                player.total_points+=3
+        if len(player.stash)>len(other_player.stash):
+            player.total_points+=3
             
 
 
