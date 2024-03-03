@@ -4,8 +4,6 @@ from Player import Player
 class GameManager():
     def __init__(self):
         self.deck = Deck()
-        self.deck.create_deck()
-        self.deck.shuffle_deck()
 
         self.player_1= Player("player 1")
         self.player_2= Player("player 2")

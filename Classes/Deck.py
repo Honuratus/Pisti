@@ -26,13 +26,9 @@ class Card():
 
 class Deck(list):
     def __init__(self):
-        super().__init__()
-        
-    def create_deck(self): # for loop wil be edited
-      for suit in suits:
-            for value in values:
-                new_card = Card(value, suit)
-                self.append(new_card)
+        super().__init__([Card(value, suit) for value in values for suit in suits])
+        self.shuffle_deck()
+
     
     def shuffle_deck(self): # from random shuffle
         shuffle(self)
